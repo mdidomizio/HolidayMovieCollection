@@ -31,6 +31,7 @@ import com.example.holidaymoviecollection.R
 import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -81,11 +82,12 @@ fun HomeScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onFabClicked,
+                containerColor = Color.Transparent,
+                contentColor = colorResource(id = R.color.text_primary),
+                elevation = FloatingActionButtonDefaults.elevation(0.dp),
                 modifier = Modifier
                     .size(72.dp)
                     .background(fabGradient, shape = CircleShape),
-                containerColor = Color.Transparent,
-                contentColor = colorResource(id = R.color.text_primary)
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
