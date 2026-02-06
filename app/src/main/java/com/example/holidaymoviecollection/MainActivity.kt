@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.holidaymoviecollection.navigation.AppNavigation
+import com.example.holidaymoviecollection.ui.HomeScreen
 import com.example.holidaymoviecollection.ui.theme.HolidayMovieCollectionTheme
 
 class MainActivity : ComponentActivity() {

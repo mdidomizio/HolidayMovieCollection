@@ -14,7 +14,11 @@ fun AppNavigation(){
         startDestination = Screen.Home.route
     ) {
         composable(Screen.Home.route) {
-            HomeScreen()
+            HomeScreen(
+                onFabClicked = {
+                   // navController.navigate(Screen.AddBundle.route)
+                }
+            )
         }
     }
 }
