@@ -18,7 +18,7 @@ import com.example.holidaymoviecollection.R
 import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 
 @Composable
-fun EmptyBundle(
+fun EmptyHomeState(
     modifier: Modifier = Modifier
 ) {
     Column(
