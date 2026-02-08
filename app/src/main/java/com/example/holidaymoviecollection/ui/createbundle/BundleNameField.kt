@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -19,6 +20,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,16 +29,22 @@ import com.example.holidaymoviecollection.R
 import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 
 @Composable
-fun BundleNameField() {
+fun BundleNameField(
+    modifier: Modifier = Modifier
+        .padding(vertical = 16.dp)
+) {
     val charactersLimit = 40
     var bundleName by remember { mutableStateOf("") }
-    Box {
+    Box (
+        modifier = Modifier.padding(16.dp)
+    ){
         OutlinedTextField(
             value = bundleName,
             onValueChange = { newValue ->
                 bundleName = newValue.take(n = charactersLimit)
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth(),
             placeholder = {
                 Text(
                     text = stringResource(id = R.string.bundle_name_placeholder),
@@ -52,6 +61,10 @@ fun BundleNameField() {
                 fontSize = 18.sp,
                 color = colorResource(id = R.color.text_primary),
                 textAlign = TextAlign.Center
+            ),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Search
             ),
             singleLine = true,
             shape = RoundedCornerShape(12.dp),
