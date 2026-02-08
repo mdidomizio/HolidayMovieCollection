@@ -1,6 +1,7 @@
 package com.example.holidaymoviecollection.ui.createbundle
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -13,9 +14,11 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -26,10 +29,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -46,11 +53,16 @@ import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 @Composable
 fun CreateBundleScreen(
     onBackClicked: () -> Unit,
+    onSaveBundleClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val backgroundColor = colorResource(id = R.color.bg)
     val movies: List<Movie> = mockMovies
+    var bundleName by remember { mutableStateOf("") }
     val selectedMovies = remember { mutableStateListOf<Movie>() }
+
+    val isSaveBundleButtonEnabled =
+        bundleName.isNotBlank() && selectedMovies.isNotEmpty()
 
     Scaffold(
         topBar = {
@@ -119,33 +131,45 @@ fun CreateBundleScreen(
         containerColor = backgroundColor,
         modifier = Modifier
     ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(innerPadding),
-        ) {
-            BundleNameField()
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                modifier = Modifier.padding(horizontal = 16.dp),
+        Box() {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(innerPadding),
             ) {
-                items(movies){ movie ->
-                    val isSelected = selectedMovies.contains(movie)
-                    BaseMovieCard(
-                        movie = movie,
-                        onCardClicked = {
-                            if (isSelected) selectedMovies.remove(movie)
-                            else selectedMovies.add(movie)
-                                        },
-                        state = MovieCardState.Selectable(isSelected),
-                        modifier = modifier
-                    )
+                BundleNameField(
+                    bundleName = bundleName,
+                    onBundleNameChange = { bundleName = it }
+                )
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                ) {
+                    items(movies){ movie ->
+                        val isSelected = selectedMovies.contains(movie)
+                        BaseMovieCard(
+                            movie = movie,
+                            onCardClicked = {
+                                if (isSelected) selectedMovies.remove(movie)
+                                else selectedMovies.add(movie)
+                            },
+                            state = MovieCardState.Selectable(isSelected),
+                            modifier = modifier
+                        )
 
-                }
-            }
-            Button(onClick = {}) {
 
+                    }
+        }
             }
+            if (isSaveBundleButtonEnabled) SaveBundleButtonEnabled(
+                onBackClicked,
+                modifier
+            )
+            else SaveBundleButtonDisabled(
+                onBackClicked,
+                modifier
+            )
+
         }
 
     }

@@ -9,10 +9,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,18 +26,19 @@ import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 
 @Composable
 fun BundleNameField(
+    bundleName: String,
+    onBundleNameChange: (String) -> Unit,
     modifier: Modifier = Modifier
         .padding(vertical = 16.dp)
 ) {
     val charactersLimit = 40
-    var bundleName by remember { mutableStateOf("") }
-    Box (
+    Box(
         modifier = Modifier.padding(16.dp)
-    ){
+    ) {
         OutlinedTextField(
             value = bundleName,
             onValueChange = { newValue ->
-                bundleName = newValue.take(n = charactersLimit)
+                onBundleNameChange(newValue.take(n = charactersLimit))
             },
             modifier = Modifier
                 .fillMaxWidth(),
@@ -78,7 +75,7 @@ fun BundleNameField(
             ),
         )
         Text(
-            text = "${bundleName.length}/40",
+            text = "${bundleName.length}/$charactersLimit",
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(end = 4.dp, bottom = 4.dp),

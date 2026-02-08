@@ -25,6 +25,9 @@ fun AppNavigation(){
             CreateBundleScreen(
                 onBackClicked = {
                     navController.popBackStack()
+                },
+                onSaveBundleClicked = {
+                    navController.popBackStack()
                 }
             )
         }
