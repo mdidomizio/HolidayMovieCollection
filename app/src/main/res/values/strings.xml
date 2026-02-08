@@ -5,4 +5,8 @@
     <string name="home_screen_empty_subtitle">Create your first holiday collection</string>
     <string name="add_bundle_button_content_description">Add a new bundle</string>
     <string name="bundle_item_subtitle">%1$s movies</string>
+    <string name="create_bundle_screen_title">Create Bundle</string>
+    <string name="create_bundle_screen_subtitle">%1$s movie/s selected</string>
+    <string name="back_button_content_description">Go back button</string>
+    <string name="bundle_name_placeholder">Bundle Name</string>
 </resources>

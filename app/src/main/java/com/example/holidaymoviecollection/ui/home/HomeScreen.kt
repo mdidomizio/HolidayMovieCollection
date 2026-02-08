@@ -1,4 +1,4 @@
-package com.example.holidaymoviecollection.ui
+package com.example.holidaymoviecollection.ui.home
 
 
 import androidx.compose.foundation.background
@@ -6,10 +6,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -53,7 +56,12 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            Column(modifier = Modifier.background(color = backgroundColor)) {
+            Column(
+                modifier = Modifier
+                    .background(color = backgroundColor)
+                    .windowInsetsPadding(WindowInsets.statusBars)
+                    .padding(top = 16.dp, end = 16.dp, start = 16.dp)
+            ) {
                 TopAppBar(
                     title = {
                         Row(
@@ -110,8 +118,7 @@ fun HomeScreen(
                 EmptyHomeState()
             } else {
                 HomeList(
-                    bundles = bundles,
-                    modifier = modifier
+                    bundles = bundles
                 )
             }
 

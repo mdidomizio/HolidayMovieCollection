@@ -1,4 +1,4 @@
-package com.example.holidaymoviecollection.ui
+package com.example.holidaymoviecollection.ui.home
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -64,7 +64,7 @@ fun MovieBundleItem(
                 fontSize = 14.sp,
                 fontFamily = PlusJakartaSans,
                 fontWeight = FontWeight.Normal,
-                color = Color.White
+                color = colorResource(id = R.color.text_secondary)
             )
         }
     }
