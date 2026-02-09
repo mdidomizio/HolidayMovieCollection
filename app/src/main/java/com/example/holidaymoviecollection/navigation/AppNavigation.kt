@@ -6,7 +6,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.holidaymoviecollection.data.mockBundles
 import com.example.holidaymoviecollection.ui.bundlepdpscreen.BundleDetailsScreen
 import com.example.holidaymoviecollection.ui.createbundle.CreateBundleScreen
 import com.example.holidaymoviecollection.ui.home.HomeScreen

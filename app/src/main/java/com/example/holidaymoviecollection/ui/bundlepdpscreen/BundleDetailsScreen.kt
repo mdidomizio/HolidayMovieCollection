@@ -34,7 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.holidaymoviecollection.R
-import com.example.holidaymoviecollection.data.Movie
+import com.example.holidaymoviecollection.data.local.entities.Movie
 import com.example.holidaymoviecollection.data.MovieBundle
 import com.example.holidaymoviecollection.ui.createbundle.BaseMovieCard
 import com.example.holidaymoviecollection.ui.createbundle.MovieCardState

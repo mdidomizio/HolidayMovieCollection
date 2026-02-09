@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import com.example.holidaymoviecollection.R
-import com.example.holidaymoviecollection.data.Movie
+import com.example.holidaymoviecollection.data.local.entities.Movie
 import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 
 

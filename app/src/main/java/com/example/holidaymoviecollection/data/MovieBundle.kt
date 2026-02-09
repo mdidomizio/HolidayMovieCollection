@@ -1,7 +1,9 @@
+/*
 package com.example.holidaymoviecollection.data
 
 import androidx.annotation.DrawableRes
 import com.example.holidaymoviecollection.R
+import com.example.holidaymoviecollection.data.local.entities.Movie
 
 data class MovieBundle(
     val id: String,
@@ -17,7 +19,11 @@ val mockBundles = listOf(
     ),
     MovieBundle ("2", "b Title 2", listOf(
         Movie(3, "Jingle All the Way (1996)", R.drawable.jingle_all_the_way_1996),
-        Movie(4, "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe (2005)", R.drawable.the_chronicles_of_narnia_2005),
+        Movie(
+            4,
+            "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe (2005)",
+            R.drawable.the_chronicles_of_narnia_2005
+        ),
         Movie(5, "The Polar Express (2004)", R.drawable.the_polar_express_2004)
         )
     ),
@@ -25,7 +31,11 @@ val mockBundles = listOf(
         Movie(6, "Klaus (2019)", R.drawable.klaus_2019),
         Movie(7, "Little Women(2019)", R.drawable.little_women_2019),
         Movie(8, "The Holiday (2006)", R.drawable.the_holiday_2006),
-        Movie(9, "Eternal Sunshine of the Spotless Mind (2004)", R.drawable.eternal_sunshine_of_the_spotless_mind_2004),
+        Movie(
+            9,
+            "Eternal Sunshine of the Spotless Mind (2004)",
+            R.drawable.eternal_sunshine_of_the_spotless_mind_2004
+        ),
         Movie(10, "Krampus (2015)", R.drawable.krampus_2015),
         Movie(11, "The Thing (1982)", R.drawable.the_thing_1982),
         Movie(12, "Die Hard 2 (1990)", R.drawable.die_hard_2_1990)
@@ -33,26 +43,5 @@ val mockBundles = listOf(
     ),
     MovieBundle ("4", "D Title 4", listOf(
         Movie(13, "Wind River (2017)", R.drawable.wind_river_2017),
-    ))/*,
-    MovieBundle ("5", "E Title 5", listOf(1,2,3,4)),
-    MovieBundle ("6", "s Title 1", emptyList()),
-    MovieBundle ("7", "n Title 2", listOf(1)),
-    MovieBundle ("8", "Title 3", listOf(1,2)),
-    MovieBundle ("9", "Title 4", listOf(1,2,3)),
-    MovieBundle ("10", "Title 5", listOf(1,2,3,4)),
-    MovieBundle ("11", "Title 1", emptyList()),
-    MovieBundle ("12", "Title 2", listOf(1)),
-    MovieBundle ("13", "Title 3", listOf(1,2)),
-    MovieBundle ("14", "Title 4", listOf(1,2,3)),
-    MovieBundle ("15", "Title 5", listOf(1,2,3,4)),
-    MovieBundle ("16", "Title 1", emptyList()),
-    MovieBundle ("17", "Title 2", listOf(1)),
-    MovieBundle ("18", "Title 3", listOf(1,2)),
-    MovieBundle ("19", "Title 4", listOf(1,2,3)),
-    MovieBundle ("20", "Title 5", listOf(1,2,3,4)),
-    MovieBundle ("21", "Title 1", emptyList()),
-    MovieBundle ("22", "Title",  listOf(1)),
-    MovieBundle ("23", "Title 3", listOf(1,2)),
-    MovieBundle ("24", "Title 4", listOf(1,2,3)),
-    MovieBundle ("25", "Title 5", listOf(1,2,3,4)),*/
-)
+    ))
+)*/
