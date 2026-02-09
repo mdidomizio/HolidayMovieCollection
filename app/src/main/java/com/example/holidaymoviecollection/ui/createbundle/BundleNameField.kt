@@ -27,9 +27,7 @@ import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 @Composable
 fun BundleNameField(
     bundleName: String,
-    onBundleNameChange: (String) -> Unit,
-    modifier: Modifier = Modifier
-        .padding(vertical = 16.dp)
+    onBundleNameChange: (String) -> Unit
 ) {
     val charactersLimit = 40
     Box(

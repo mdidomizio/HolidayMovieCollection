@@ -1,5 +1,7 @@
 package com.example.holidaymoviecollection.ui.bundlepdpscreen
 
+import android.app.Application
+import android.os.Bundle
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,18 +26,20 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.holidaymoviecollection.HolidayMovieCollectionApplication
 import com.example.holidaymoviecollection.R
-import com.example.holidaymoviecollection.data.local.entities.Movie
-import com.example.holidaymoviecollection.data.MovieBundle
 import com.example.holidaymoviecollection.ui.createbundle.BaseMovieCard
 import com.example.holidaymoviecollection.ui.createbundle.MovieCardState
 import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
@@ -43,11 +47,23 @@ import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BundleDetailsScreen(
+    bundleId: Long,
     onBackClicked: () -> Unit,
-    bundle: MovieBundle,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    val movies: List<Movie> = bundle.movies
+    val application = LocalContext.current.applicationContext as Application
+    val repository = (application as HolidayMovieCollectionApplication).bundleRepository
+    val factory = BundleDetailsViewModelFactory(
+        owner = androidx.savedstate.compose.LocalSavedStateRegistryOwner.current,
+        repository = repository,
+        defaultArgs = Bundle().apply {
+            putLong("bundleId", bundleId)
+        }
+    )
+    val viewModel: BundleDetailsViewModel = viewModel(factory = factory)
+    val bundleWithMovies = viewModel.bundle.collectAsState().value ?: return
+    val movies = bundleWithMovies.movies
+    val bundle = bundleWithMovies.bundle
 
     val backgroundColor = colorResource(id = R.color.bg)
     Scaffold(
@@ -77,7 +93,7 @@ fun BundleDetailsScreen(
                             Text(
                                 text = stringResource(
                                     id = R.string.bundle_details_screen_movie_count,
-                                    bundle.movies.size
+                                    movies.size
                                 ),
                                 fontFamily = PlusJakartaSans,
                                 fontWeight = FontWeight.Normal,
@@ -127,8 +143,7 @@ fun BundleDetailsScreen(
                 BaseMovieCard(
                     movie = movie,
                     onCardClicked = {},
-                    state = MovieCardState.Default,
-                    modifier = modifier
+                    state = MovieCardState.Default
                 )
             }
         }

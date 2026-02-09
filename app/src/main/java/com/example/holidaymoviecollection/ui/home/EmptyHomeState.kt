@@ -18,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.holidaymoviecollection.R
-import com.example.holidaymoviecollection.data.MovieBundle
+import com.example.holidaymoviecollection.data.local.relations.BundleWithMovies
 import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 
 @Composable
@@ -50,18 +50,21 @@ fun EmptyHomeState(
 
 @Composable
 fun HomeList(
-    bundles: List<MovieBundle>,
-    onBundleItemClicked: (String) -> Unit
+    bundles: List<BundleWithMovies>,
+    onBundleItemClicked: (Long) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        items(bundles) { bundle ->
+        items(
+            items = bundles,
+            key = {it.bundle.bundleId}
+        ) { bundleWithMovies ->
             MovieBundleItem(
-                bundle = bundle,
-                onBundleItemClicked = { onBundleItemClicked(bundle.id) }
+                bundleWithMovies = bundleWithMovies,
+                onBundleItemClicked = { onBundleItemClicked(bundleWithMovies.bundle.bundleId) }
             )
         }
     }

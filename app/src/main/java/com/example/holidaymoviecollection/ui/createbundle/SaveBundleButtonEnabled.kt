@@ -24,7 +24,7 @@ import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 
 @Composable
 fun SaveBundleButtonEnabled (
-    onBackClicked: () -> Unit,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ){
     val saveButtonGradient = Brush.linearGradient(
@@ -32,10 +32,7 @@ fun SaveBundleButtonEnabled (
     )
     Box(modifier = modifier.fillMaxSize()) {
         Button(
-            onClick = {
-                // TODO add the save bundle to DB
-                onBackClicked()
-            },
+            onClick = onClick,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(horizontal = 36.dp, vertical = 24.dp)

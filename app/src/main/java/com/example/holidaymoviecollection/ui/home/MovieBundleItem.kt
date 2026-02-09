@@ -19,15 +19,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.holidaymoviecollection.R
-import com.example.holidaymoviecollection.data.MovieBundle
+import com.example.holidaymoviecollection.data.local.relations.BundleWithMovies
 import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 import java.util.Locale.getDefault
 
 @Composable
 fun MovieBundleItem(
-    bundle: MovieBundle,
+    bundleWithMovies: BundleWithMovies,
     onBundleItemClicked: () -> Unit
 ) {
+    val bundle = bundleWithMovies.bundle
+    val movies = bundleWithMovies.movies
+
     Row(
         modifier = Modifier
             .clickable(onClick = onBundleItemClicked)
@@ -44,7 +47,7 @@ fun MovieBundleItem(
                 modifier = Modifier.size(56.dp, 47.dp)
             )
             Text(
-                text = bundle.name.first().toString().uppercase(getDefault()),
+                text = bundle.name.firstOrNull().toString().uppercase(getDefault()),
                 fontSize = 22.sp,
                 fontFamily = PlusJakartaSans,
                 fontWeight = FontWeight.SemiBold,
@@ -64,7 +67,7 @@ fun MovieBundleItem(
                 color = Color.White
             )
             Text(
-                text = stringResource(id = R.string.bundle_item_subtitle, bundle.movies.size),
+                text = stringResource(id = R.string.bundle_item_subtitle, movies.size),
                 fontSize = 14.sp,
                 fontFamily = PlusJakartaSans,
                 fontWeight = FontWeight.Normal,

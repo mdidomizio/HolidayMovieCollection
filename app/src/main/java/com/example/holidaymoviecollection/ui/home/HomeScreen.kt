@@ -36,20 +36,23 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import com.example.holidaymoviecollection.data.MovieBundle
-import com.example.holidaymoviecollection.data.mockBundles
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.holidaymoviecollection.ui.AppViewModelProvider
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory),
     onFabClicked: () -> Unit,
-    onBundleItemClicked: (String) -> Unit,
+    onBundleItemClicked: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val  bundles: List<MovieBundle> = mockBundles
+    val bundles by viewModel.bundles.collectAsState()
     val backgroundColor = colorResource(id = R.color.bg)
     val fabGradient = Brush.linearGradient(
         colors = listOf(Color(0xFF0C77C4), Color(0xFF57B7FC))
@@ -125,8 +128,6 @@ fun HomeScreen(
                     }
                 )
             }
-
         }
     }
-
 }

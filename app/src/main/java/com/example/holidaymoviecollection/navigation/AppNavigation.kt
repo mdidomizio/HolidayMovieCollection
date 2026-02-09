@@ -11,7 +11,7 @@ import com.example.holidaymoviecollection.ui.createbundle.CreateBundleScreen
 import com.example.holidaymoviecollection.ui.home.HomeScreen
 
 @Composable
-fun AppNavigation(){
+fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
@@ -27,10 +27,9 @@ fun AppNavigation(){
                         route = Screen.BundleDetails.createRoute(bundleId)
                     )
                 }
-
             )
         }
-        composable (Screen.CreateBundle.route){
+        composable(Screen.CreateBundle.route) {
             CreateBundleScreen(
                 onBackClicked = {
                     navController.popBackStack()
@@ -40,25 +39,23 @@ fun AppNavigation(){
                 }
             )
         }
-        composable (
+        composable(
             route = Screen.BundleDetails.route,
             arguments = listOf(
                 navArgument("bundleId") {
-                    type = NavType.StringType
+                    type = NavType.LongType
                 }
             )
-        ){ backStackEntry ->
-            val bundleId = backStackEntry.arguments?.getString("bundleId") ?: ""
-            val bundle = mockBundles.find { it.id == bundleId }
-            if (bundle != null) {
-                BundleDetailsScreen(
-                    bundle = bundle,
-                    onBackClicked = {
-                        navController.popBackStack()
-                    }
-                )
-            }
-        }
+        ) { backStackEntry ->
+            val bundleId = backStackEntry.arguments?.getLong("bundleId")
+                ?: return@composable
+
+            BundleDetailsScreen(
+                bundleId = bundleId,
+                onBackClicked = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
-
+}

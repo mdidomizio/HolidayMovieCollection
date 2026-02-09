@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -24,15 +23,11 @@ import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 
 @Composable
 fun SaveBundleButtonDisabled (
-    onBackClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ){
     Box(modifier = modifier.fillMaxSize()) {
         Button(
-            onClick = {
-                // TODO add the save bundle to DB
-                onBackClicked()
-            },
+            onClick = {},
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(horizontal = 36.dp, vertical = 24.dp)

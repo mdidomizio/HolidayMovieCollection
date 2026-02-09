@@ -5,6 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Bundle(
-    @PrimaryKey val bundleId: Long,
+    @PrimaryKey(autoGenerate = true) val bundleId: Long = 0,
     val name: String
 )

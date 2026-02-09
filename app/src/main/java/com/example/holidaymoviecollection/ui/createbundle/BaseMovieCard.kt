@@ -49,8 +49,7 @@ sealed interface MovieCardState {
 fun BaseMovieCard(
     onCardClicked: () -> Unit,
     movie: Movie,
-    state: MovieCardState,
-    modifier: Modifier = Modifier
+    state: MovieCardState
 ) {
     val checkboxGradient = Brush.linearGradient(
         colors = listOf(Color(0xFF0C77C4), Color(0xFF57B7FC))
@@ -77,9 +76,9 @@ fun BaseMovieCard(
                 Box(modifier = Modifier.fillMaxSize()) {
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
-                            .data(movie.poster)
-                            .memoryCacheKey(movie.poster.toString())
-                            .diskCacheKey(movie.poster.toString())
+                            .data(movie.posterResId)
+                            .memoryCacheKey(movie.posterResId.toString())
+                            .diskCacheKey(movie.posterResId.toString())
                             .build(),
                         contentDescription =
                             stringResource(
