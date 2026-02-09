@@ -1,9 +1,13 @@
 package com.example.holidaymoviecollection.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.holidaymoviecollection.data.mockBundles
+import com.example.holidaymoviecollection.ui.bundlepdpscreen.BundleDetailsScreen
 import com.example.holidaymoviecollection.ui.createbundle.CreateBundleScreen
 import com.example.holidaymoviecollection.ui.home.HomeScreen
 
@@ -18,7 +22,13 @@ fun AppNavigation(){
             HomeScreen(
                 onFabClicked = {
                     navController.navigate(Screen.CreateBundle.route)
+                },
+                onBundleItemClicked = { bundleId ->
+                    navController.navigate(
+                        route = Screen.BundleDetails.createRoute(bundleId)
+                    )
                 }
+
             )
         }
         composable (Screen.CreateBundle.route){
@@ -31,5 +41,25 @@ fun AppNavigation(){
                 }
             )
         }
+        composable (
+            route = Screen.BundleDetails.route,
+            arguments = listOf(
+                navArgument("bundleId") {
+                    type = NavType.StringType
+                }
+            )
+        ){ backStackEntry ->
+            val bundleId = backStackEntry.arguments?.getString("bundleId") ?: ""
+            val bundle = mockBundles.find { it.id == bundleId }
+            if (bundle != null) {
+                BundleDetailsScreen(
+                    bundle = bundle,
+                    onBackClicked = {
+                        navController.popBackStack()
+                    }
+                )
+            }
+        }
+        }
     }
-}
+

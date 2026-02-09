@@ -10,6 +10,7 @@
     <string name="back_button_content_description">Go back button</string>
     <string name="bundle_name_placeholder">Bundle Name</string>
     <string name="movie_poster_content_description">Poster for movie %1$s</string>
-    <string name="movie_selected_content_description">MOvie selected</string>
+    <string name="movie_selected_content_description">Movie selected</string>
     <string name="create_bundle_save_button_text">Save Bundle</string>
+    <string name="bundle_details_screen_movie_count">%1$s movies</string>
 </resources>

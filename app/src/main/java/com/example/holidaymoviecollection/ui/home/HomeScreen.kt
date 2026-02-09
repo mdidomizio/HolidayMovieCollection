@@ -46,6 +46,7 @@ import com.example.holidaymoviecollection.data.mockBundles
 @Composable
 fun HomeScreen(
     onFabClicked: () -> Unit,
+    onBundleItemClicked: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val  bundles: List<MovieBundle> = mockBundles
@@ -118,7 +119,10 @@ fun HomeScreen(
                 EmptyHomeState()
             } else {
                 HomeList(
-                    bundles = bundles
+                    bundles = bundles,
+                    onBundleItemClicked = { bundleId ->
+                        onBundleItemClicked(bundleId)
+                    }
                 )
             }
 

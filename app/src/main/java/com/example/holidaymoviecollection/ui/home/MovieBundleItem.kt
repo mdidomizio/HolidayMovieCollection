@@ -1,5 +1,6 @@
 package com.example.holidaymoviecollection.ui.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,10 +25,13 @@ import java.util.Locale.getDefault
 
 @Composable
 fun MovieBundleItem(
-    bundle: MovieBundle
+    bundle: MovieBundle,
+    onBundleItemClicked: () -> Unit
 ) {
     Row(
-        modifier = Modifier.padding(vertical = 8.dp),
+        modifier = Modifier
+            .clickable(onClick = onBundleItemClicked)
+            .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(

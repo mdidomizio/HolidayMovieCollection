@@ -50,7 +50,8 @@ fun EmptyHomeState(
 
 @Composable
 fun HomeList(
-    bundles: List<MovieBundle>
+    bundles: List<MovieBundle>,
+    onBundleItemClicked: (String) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.Companion
@@ -58,7 +59,10 @@ fun HomeList(
             .padding(16.dp)
     ) {
         items(bundles) { bundle ->
-            MovieBundleItem(bundle = bundle)
+            MovieBundleItem(
+                bundle = bundle,
+                onBundleItemClicked = { onBundleItemClicked(bundle.id) }
+            )
         }
     }
 }
