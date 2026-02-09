@@ -54,7 +54,7 @@ fun HomeList(
     onBundleItemClicked: (String) -> Unit
 ) {
     LazyColumn(
-        modifier = Modifier.Companion
+        modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {

@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -31,7 +34,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.holidaymoviecollection.R
+import com.example.holidaymoviecollection.data.Movie
 import com.example.holidaymoviecollection.data.MovieBundle
+import com.example.holidaymoviecollection.ui.createbundle.BaseMovieCard
+import com.example.holidaymoviecollection.ui.createbundle.MovieCardState
 import com.example.holidaymoviecollection.ui.theme.PlusJakartaSans
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,6 +47,7 @@ fun BundleDetailsScreen(
     bundle: MovieBundle,
     modifier: Modifier = Modifier
 ) {
+    val movies: List<Movie> = bundle.movies
 
     val backgroundColor = colorResource(id = R.color.bg)
     Scaffold(
@@ -99,7 +106,7 @@ fun BundleDetailsScreen(
                         }
                     },
 
-                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = Color.Transparent
                     )
                 )
@@ -109,5 +116,22 @@ fun BundleDetailsScreen(
         },
         containerColor = backgroundColor,
         modifier = Modifier
-    ) { }
+    ) { innerPadding ->
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(16.dp)
+        ) {
+            items(movies) { movie ->
+                BaseMovieCard(
+                    movie = movie,
+                    onCardClicked = {},
+                    state = MovieCardState.Default,
+                    modifier = modifier
+                )
+            }
+        }
+
+    }
 }

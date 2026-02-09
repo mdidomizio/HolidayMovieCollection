@@ -15,7 +15,7 @@ val mockMovies = listOf(
     Movie(4, "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe (2005)", R.drawable.the_chronicles_of_narnia_2005),
     Movie(5, "The Polar Express (2004)", R.drawable.the_polar_express_2004),
     Movie(6, "Klaus (2019)", R.drawable.klaus_2019),
-    Movie(7, "Little Women(2019)", R.drawable.little_women_2019),
+    Movie(7, "Little Women (2019)", R.drawable.little_women_2019),
     Movie(8, "The Holiday (2006)", R.drawable.the_holiday_2006),
     Movie(9, "Eternal Sunshine of the Spotless Mind (2004)", R.drawable.eternal_sunshine_of_the_spotless_mind_2004),
     Movie(10, "Krampus (2015)", R.drawable.krampus_2015),
