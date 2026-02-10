@@ -118,15 +118,15 @@ fun HomeScreen(
                 .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            if (bundles.isEmpty()) {
-                EmptyHomeState()
-            } else {
+            if (bundles.isNotEmpty()) {
                 HomeList(
                     bundles = bundles,
                     onBundleItemClicked = { bundleId ->
                         onBundleItemClicked(bundleId)
                     }
                 )
+            } else {
+                EmptyHomeState()
             }
         }
     }
